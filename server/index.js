@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { config } from "dotenv";
 import postRoutes from "./routes/postRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 config({ path: "./development.env" });
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 // routing
 app.use("/post", postRoutes);
+app.use("/user", userRoutes);
 
 const dbURI = process.env.DATABASE_URL.replace(
   "<password>",
