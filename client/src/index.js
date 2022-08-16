@@ -1,10 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import * as ReactDOMClient from "react-dom/client";
 import App from "./App";
+import ModalProvider from "./provider/ModalProvider";
+import UserProvider from "./provider/UserProvider";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOMClient.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+      <ModalProvider>
+        <App />
+      </ModalProvider>
+    </UserProvider>
   </React.StrictMode>
 );
