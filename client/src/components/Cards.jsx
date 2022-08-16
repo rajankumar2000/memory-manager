@@ -1,9 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { BiHappy, BiSad, BiEdit } from "react-icons/bi";
 
 function Cards() {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ maxWidth: "18rem" }}>
       <Card.Img variant="top" src="/assets/image.jpg" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
@@ -11,7 +12,13 @@ function Cards() {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Footer
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <BiHappy style={{ fontSize: "30px", cursor: "pointer" }} />
+          <BiSad style={{ fontSize: "30px", cursor: "pointer" }} />
+          <BiEdit style={{ fontSize: "30px", cursor: "pointer" }} />
+        </Card.Footer>
       </Card.Body>
     </Card>
   );

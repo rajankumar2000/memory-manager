@@ -1,3 +1,9 @@
 import { createContext } from "react";
 
-export const UserContext = createContext({});
+const initialState = {
+  user: null,
+  login: () => {},
+  logout: () => {},
+};
+
+export const UserContext = createContext(initialState);
