@@ -10,6 +10,7 @@ const postSchema = mongoose.Schema(
       default: new Date(),
     },
   },
+  { collection: "memories" },
   { timestamps: true }
 );
 

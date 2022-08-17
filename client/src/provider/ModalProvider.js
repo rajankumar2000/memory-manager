@@ -1,15 +1,27 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import { ModalContext } from "../context/ModalContext";
 
 const ModalProvider = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [memoryOpen, setMemoryOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
-  const Handler = () => {
-    setIsOpen((open) => !open);
+  const MemoryHandler = () => {
+    setMemoryOpen((memoryOpen) => !memoryOpen);
+  };
+
+  const LoginHandler = () => {
+    setLoginOpen((loginOpen) => !loginOpen);
   };
 
   return (
-    <ModalContext.Provider value={{ isOpen, toggle: Handler }}>
+    <ModalContext.Provider
+      value={{
+        memoryOpen,
+        toggleMemory: MemoryHandler,
+        loginOpen,
+        toggleLogin: LoginHandler,
+      }}
+    >
       {props.children}
     </ModalContext.Provider>
   );

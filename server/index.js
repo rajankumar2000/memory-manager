@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 // routing
-app.use("/post", postRoutes);
-app.use("/user", userRoutes);
+app.use("/api", postRoutes);
+app.use("/api", userRoutes);
 
 const dbURI = process.env.DATABASE_URL.replace(
   "<password>",
@@ -27,7 +27,6 @@ const dbURI = process.env.DATABASE_URL.replace(
 // implementing token
 const createToken = async () => {
   const token = await jwt.sign({ _id: "62fbc25e858af7c76ae4a2b5" }, "Testing");
-  console.log(token);
 };
 createToken();
 

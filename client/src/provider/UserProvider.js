@@ -3,11 +3,13 @@ import { UserContext } from "../context/UserContext";
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(null);
-  const loginHandler = () => {
-    setUser((user) => (user = true));
+  const loginHandler = (user) => {
+    console.log(user);
+    setUser(user);
   };
   const logoutHandler = () => {
-    setUser((user) => (user = null));
+    setUser(null);
+    localStorage.removeItem("currentUser");
   };
   return (
     <UserContext.Provider

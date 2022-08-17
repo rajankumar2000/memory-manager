@@ -1,8 +1,10 @@
 import { createContext } from "react";
 
 const initialState = createContext({
-  isOpen: false,
-  toggle: () => {},
+  memoryOpen: false,
+  toggleMemory: () => {},
+  loginOpen: false,
+  toggleLogin: () => {},
 });
 
 export const ModalContext = createContext(initialState);
