@@ -10,6 +10,13 @@ const userSchema = mongoose.Schema(
       unique: true,
     },
     password: { type: String, required: true },
+    token: String,
+    memories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "memories",
+      },
+    ],
   },
   { collection: "users" },
   { timestamps: true }

@@ -5,7 +5,6 @@ const MemoryProvider = (props) => {
   const [memories, setMemories] = useState(null);
 
   const getMemories = (payload) => {
-    console.log(payload);
     setMemories(payload);
   };
   return (

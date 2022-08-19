@@ -1,4 +1,6 @@
 import PostMessage from "../models/postMessage.js";
+import jwt from "jsonwebtoken";
+import userModel from "../models/userModel.js";
 
 export const getPosts = async (req, res) => {
   try {
@@ -13,11 +15,17 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
   //getting post from client side
-  console.log(req.body);
+  console.log(req.params.id);
   const post = req.body;
   const newPost = new PostMessage(post);
+
+  const currentUser = userModel.findOneAndUpdate(
+    { email: post.email },
+    { $push: { memories: newPost } }
+  );
+
   try {
-    await newPost.save();
+    await currentUser.save();
     res.status(201).json({
       message: "Memory created successfully.",
     });

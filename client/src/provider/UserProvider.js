@@ -4,7 +4,6 @@ import { UserContext } from "../context/UserContext";
 const UserProvider = (props) => {
   const [user, setUser] = useState(null);
   const loginHandler = (user) => {
-    console.log(user);
     setUser(user);
   };
   const logoutHandler = () => {

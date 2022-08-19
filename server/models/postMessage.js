@@ -5,6 +5,10 @@ const postSchema = mongoose.Schema(
     title: String,
     story: String,
     mood: String,
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
     createdAt: {
       type: Date,
       default: new Date(),

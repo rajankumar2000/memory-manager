@@ -31,24 +31,13 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(loginData),
-    }).then((res) => res.json());
-
-    // setting user
-    if (data) {
-      localStorage.setItem("currentUser", JSON.stringify(data));
-      login(data);
-      toggleLogin();
-    } else {
-      toast.error("Login first!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("currentUser", data);
+        login(data.user);
+        toggleLogin();
       });
-    }
   };
 
   return (

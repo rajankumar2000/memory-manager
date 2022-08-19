@@ -7,15 +7,18 @@ import { BiHappy, BiSad, BiEdit } from "react-icons/bi";
 import MemoryContext from "../../context/MemoryContext";
 import { ModalContext } from "../../context/ModalContext";
 import { toast } from "react-toastify";
+import { UserContext } from "../../context/UserContext";
 
 const Memory = () => {
   const { memories, getMemories } = useContext(MemoryContext);
   const { toggleMemory } = useContext(ModalContext);
+  const { user } = useContext(UserContext);
+
   const [body, setBody] = useState({
     title: "",
     story: "",
   });
-
+  console.log(user);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBody({ ...body, [name]: value });
@@ -23,8 +26,7 @@ const Memory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify(body));
-    const data = await fetch("http://localhost:8080/api/post", {
+    await fetch(`http://localhost:8080/api/post/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

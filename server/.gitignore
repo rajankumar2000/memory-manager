@@ -7,7 +7,6 @@
 
 
 # environment variables
-.env
 
 # testing
 /coverage
