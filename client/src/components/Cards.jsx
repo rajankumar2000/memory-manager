@@ -1,11 +1,21 @@
-import Button from "react-bootstrap/Button";
+import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
-import { BiHappy, BiSad, BiEdit } from "react-icons/bi";
+import { BiEdit, BiHappy, BiSad } from "react-icons/bi";
 
-function Cards({ title, story }) {
+function Cards({ title, story, mood, memoryId }) {
+  const [random, setRandom] = useState(1);
+  useEffect(() => {
+    setRandom((random) => Math.floor(Math.random() * 10));
+  }, []);
+
   return (
-    <Card style={{ maxWidth: "18rem" }}>
-      <Card.Img variant="top" src="/assets/image.jpg" />
+    <Card style={{ width: "18rem" }}>
+      <Card.Img
+        variant="top"
+        src={`/assets/image(${random}).jpg`}
+        height={"200px"}
+        width={"200px"}
+      />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text style={{ color: "#36454F", fontWeight: "300" }}>
@@ -14,9 +24,24 @@ function Cards({ title, story }) {
         <Card.Footer
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <BiHappy style={{ fontSize: "30px", cursor: "pointer" }} />
-          <BiSad style={{ fontSize: "30px", cursor: "pointer" }} />
-          <BiEdit style={{ fontSize: "30px", cursor: "pointer" }} />
+          <BiHappy
+            style={{
+              fontSize: "30px",
+              cursor: "pointer",
+              color: mood === "happy" ? "blue" : "black",
+            }}
+          />
+          <BiSad
+            style={{
+              fontSize: "30px",
+              cursor: "pointer",
+              color: mood === "sad" ? "blue" : "black",
+            }}
+          />
+          <BiEdit
+            style={{ fontSize: "30px", cursor: "pointer" }}
+            onClick={handleUpdate}
+          />
         </Card.Footer>
       </Card.Body>
     </Card>

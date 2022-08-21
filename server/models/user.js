@@ -11,10 +11,11 @@ const userSchema = mongoose.Schema(
     },
     password: { type: String, required: true },
     token: String,
+
     memories: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "memories",
+        ref: "memory",
       },
     ],
   },
@@ -22,5 +23,5 @@ const userSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const userModel = mongoose.model("user", userSchema);
-export default userModel;
+const User = mongoose.model("user", userSchema);
+export default User;

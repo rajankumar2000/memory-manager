@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Cards from "./components/Cards";
 import Modal from "./components/common/Modal";
 import Memory from "./components/forms/Memory";
@@ -9,6 +9,7 @@ import { UserContext } from "./context/UserContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MemoryContext from "./context/MemoryContext";
+import Images from "./components/image/Images";
 
 const App = () => {
   const bodyStyle = {
@@ -19,12 +20,9 @@ const App = () => {
   const { memoryOpen, loginOpen } = useContext(ModalContext);
   const { memories, getMemories } = useContext(MemoryContext);
 
-  const { user, login } = useContext(UserContext);
+  const { user, getUser } = useContext(UserContext);
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("currentUser");
-    if (isLoggedIn) {
-      login(isLoggedIn);
-    }
+    getUser();
     fetchMemories();
   }, []);
 
@@ -38,7 +36,10 @@ const App = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => getMemories(data));
+      .then((data) => {
+        getMemories(data.memories);
+        console.log(data.memories);
+      });
   };
 
   return (
@@ -99,12 +100,30 @@ const App = () => {
           >
             {memories && memories.length > 0
               ? memories.map((item) => (
-                  <Cards key={item._id} title={item.title} story={item.story} />
+                  <Cards
+                    key={item._id}
+                    title={item.title}
+                    story={item.story}
+                    mood={item.mood}
+                    memoryId={item._id}
+                  />
                 ))
               : "No Memories"}
           </div>
         ) : (
-          <h1 style={{ color: "white" }}> Login First</h1>
+          <div
+            style={{
+              width: "90vw",
+              display: "flex",
+              gap: "1rem",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num, index) => (
+              <Images key={index} num={num} />
+            ))}
+          </div>
         )}
       </div>
     </div>

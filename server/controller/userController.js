@@ -1,5 +1,5 @@
-import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
 export const newUser = async (req, res) => {
   var user = req.body;
@@ -10,8 +10,8 @@ export const newUser = async (req, res) => {
     },
     "RajanSecretKey"
   );
-  const newUserData = { ...user, token };
-  const NewUser = new userModel(newUserData);
+  const newUserData = { ...user, token, memories: [] };
+  const NewUser = new User(newUserData);
   console.log(newUser, newUserData);
 
   try {
@@ -27,7 +27,7 @@ export const newUser = async (req, res) => {
 export const login = async (req, res) => {
   const loginDetails = req.body;
   try {
-    const user = await userModel.findOne(loginDetails);
+    const user = await User.findOne(loginDetails);
     if (user) {
       res.status(201).json({
         user: user,

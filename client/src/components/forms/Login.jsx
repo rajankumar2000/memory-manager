@@ -34,7 +34,6 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem("currentUser", data);
         login(data.user);
         toggleLogin();
       });

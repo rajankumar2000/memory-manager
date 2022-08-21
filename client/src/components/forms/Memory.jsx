@@ -18,7 +18,8 @@ const Memory = () => {
     title: "",
     story: "",
   });
-  console.log(user);
+  console.log(body);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBody({ ...body, [name]: value });
@@ -31,7 +32,7 @@ const Memory = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ ...body }),
     }).then((res) => console.log(res.json()));
     toggleMemory();
   };
@@ -61,7 +62,17 @@ const Memory = () => {
         </Form.Group>
       </Card.Body>
       <Card.Footer>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div
+          style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}
+        >
+          <BiHappy
+            style={{ fontSize: "30px", cursor: "pointer" }}
+            onClick={() => setBody({ ...body, mood: "happy" })}
+          />
+          <BiSad
+            style={{ fontSize: "30px", cursor: "pointer" }}
+            onClick={() => setBody({ ...body, mood: "sad" })}
+          />
           <Button variant="outline-success" onClick={handleSubmit}>
             Create
           </Button>
