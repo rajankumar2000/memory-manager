@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import "./images.css";
 
 const Images = ({ num }) => {
-  const [random, setRandom] = useState(1);
+  const [image, setImage] = useState(1);
+  let random = Math.floor(Math.random(1) * 10);
+  if (random === 0) random = 1;
   useEffect(() => {
-    setRandom((random) => Math.floor(Math.random() * 10));
+    setImage((image) => `/assets/image(${random}).jpg`);
   }, []);
 
   //     transition-duration: 3s, 1s;
@@ -11,22 +14,20 @@ const Images = ({ num }) => {
 
   return (
     <div
+      className={random % 2 === 0 ? "in" : "out"}
       style={{
-        minHeight: "100%",
-        border: "2px solid gray",
-        transitionDuration: "3s",
-        transitionProperty: "marginTop",
-        padding: "5px",
+        display: "flex",
+        flexWrap: "wrap",
+        minHeight: "400px",
+        padding: "0.5px",
+        width: random % 2 === 0 ? "40vw" : "20vw",
       }}
     >
       <img
-        style={{
-          maxWidth: random % 2 == 0 ? "60vw" : "30vw",
-          minHeight: random % 3 === 0 ? "10vh" : "30vh",
-          objectFit: "contain",
-        }}
-        className="images"
-        src={`/assets/image(${random}).jpg`}
+        src={image}
+        height={"100%"}
+        width={"100%"}
+        style={{ objectFit: "cover" }}
       />
     </div>
   );

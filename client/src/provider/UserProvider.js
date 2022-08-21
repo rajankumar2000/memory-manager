@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { UserContext } from "../context/UserContext";
 
 const UserProvider = (props) => {
+  // Navigation
+
   const [user, setUser] = useState(null);
   const loginHandler = (user) => {
     var stringedUser = JSON.stringify(user);

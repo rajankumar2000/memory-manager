@@ -7,8 +7,12 @@ import Form from "react-bootstrap/Form";
 import { BiHappy, BiSad, BiEdit } from "react-icons/bi";
 import { ModalContext } from "../../context/ModalContext";
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  //Navigation
+  const navigate = useNavigate();
+
   //getting toggle from userContext
   const { toggleLogin } = useContext(ModalContext);
   const { login } = useContext(UserContext);
@@ -36,6 +40,7 @@ const Login = () => {
       .then((data) => {
         login(data.user);
         toggleLogin();
+        navigate("/dashboard");
       });
   };
 

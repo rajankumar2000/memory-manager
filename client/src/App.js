@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
-import Cards from "./components/Cards";
-import Modal from "./components/common/Modal";
-import Memory from "./components/forms/Memory";
-import Login from "./components/forms/Login";
-import Navbar from "./components/Navbar";
-import { ModalContext } from "./context/ModalContext";
-import { UserContext } from "./context/UserContext";
+import React, { useContext, useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "./components/common/Modal";
+import Login from "./components/forms/Login";
+import Memory from "./components/forms/Memory";
+import HeroSection from "./components/hero-section/HeroSection";
+import Navbar from "./components/Navbar";
 import MemoryContext from "./context/MemoryContext";
-import Images from "./components/image/Images";
+import { ModalContext } from "./context/ModalContext";
+import { UserContext } from "./context/UserContext";
+import Homepage from "./pages/Homepage";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   const bodyStyle = {
-    backgroundColor: "#54BAB9",
+    backgroundColor: "#DFF6FF",
     minHeight: "100vh",
   };
 
@@ -66,7 +68,6 @@ const App = () => {
         draggable
         pauseOnHover
       />
-
       {memoryOpen && (
         <Modal>
           <Memory />
@@ -77,55 +78,19 @@ const App = () => {
           <Login />
         </Modal>
       )}
-      <div
-        className="p-3"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          gap: "10px",
-          justifyContent: "space-evenly",
-          marginTop: "60px",
-        }}
-      >
-        {user ? (
-          <div
-            style={{
-              display: "flex",
-              gap: "20px",
-              justifyContent: "center",
-              alignItems: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            {memories && memories.length > 0
-              ? memories.map((item) => (
-                  <Cards
-                    key={item._id}
-                    title={item.title}
-                    story={item.story}
-                    mood={item.mood}
-                    memoryId={item._id}
-                  />
-                ))
-              : "No Memories"}
-          </div>
-        ) : (
-          <div
-            style={{
-              width: "90vw",
-              display: "flex",
-              gap: "1rem",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num, index) => (
-              <Images key={index} num={num} />
-            ))}
-          </div>
-        )}
-      </div>
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            !user ? <LandingPage /> : <Navigate to="/dashboard" replace />
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={user ? <Homepage /> : <Navigate to="/" replace />}
+        />
+      </Routes>
     </div>
   );
 };

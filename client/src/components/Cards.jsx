@@ -38,10 +38,7 @@ function Cards({ title, story, mood, memoryId }) {
               color: mood === "sad" ? "blue" : "black",
             }}
           />
-          <BiEdit
-            style={{ fontSize: "30px", cursor: "pointer" }}
-            onClick={handleUpdate}
-          />
+          <BiEdit style={{ fontSize: "30px", cursor: "pointer" }} />
         </Card.Footer>
       </Card.Body>
     </Card>
