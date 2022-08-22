@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "./components/common/Modal";
 import Login from "./components/forms/Login";
 import Memory from "./components/forms/Memory";
+import Register from "./components/forms/Register";
 import HeroSection from "./components/hero-section/HeroSection";
 import Navbar from "./components/Navbar";
 import MemoryContext from "./context/MemoryContext";
@@ -19,30 +20,15 @@ const App = () => {
     minHeight: "100vh",
   };
 
-  const { memoryOpen, loginOpen } = useContext(ModalContext);
+  const { memoryOpen, loginOpen, registerOpen } = useContext(ModalContext);
   const { memories, getMemories } = useContext(MemoryContext);
 
   const { user, getUser } = useContext(UserContext);
   useEffect(() => {
-    getUser();
-    fetchMemories();
+    if (!user) getUser();
   }, []);
 
-  useEffect(() => {}, [memories]);
-
-  const fetchMemories = async () => {
-    await fetch("http://localhost:8080/api/post", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        getMemories(data.memories);
-        console.log(data.memories);
-      });
-  };
+  
 
   return (
     <div style={bodyStyle}>
@@ -76,6 +62,11 @@ const App = () => {
       {loginOpen && (
         <Modal>
           <Login />
+        </Modal>
+      )}
+      {registerOpen && (
+        <Modal>
+          <Register />
         </Modal>
       )}
 

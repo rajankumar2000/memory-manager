@@ -27,14 +27,19 @@ const Memory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:8080/api/post/${user._id}`, {
+    const saveData = fetch(`http://localhost:8080/api/post/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...body }),
-    }).then((res) => console.log(res.json()));
-    toggleMemory();
+    }).then((res) => toggleMemory());
+
+    toast.promise(saveData, {
+      promise: "Saving your memory",
+      success: "Memory Saved",
+      error: "Error while saving",
+    });
   };
 
   return (

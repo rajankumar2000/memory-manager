@@ -14,13 +14,14 @@ const Navbar = () => {
     top: "0",
     zIndex: "999",
     backgroundColor: "#1363DF",
+    padding: "0 5rem",
   };
   const { memoryOpen, loginOpen, toggleMemory, toggleLogin } =
     useContext(ModalContext);
   const { user, login, logout } = useContext(UserContext);
 
   return (
-    <nav className="navbar navbar-light text-light p-2" style={NavStyle}>
+    <nav className="navbar navbar-light text-light" style={NavStyle}>
       <span style={{ fontSize: "2rem" }}>Memory Manager</span>
       {user ? (
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
@@ -57,12 +58,6 @@ const Navbar = () => {
             }}
           >
             Login
-          </span>
-          <span
-            className="btn btn-outline-light"
-            style={{ borderRadius: "10px", padding: "0 20px" }}
-          >
-            Register
           </span>
         </div>
       )}

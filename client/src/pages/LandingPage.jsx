@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import HeroSection from "../components/hero-section/HeroSection";
 import Images from "../components/image/Images";
+import { ModalContext } from "../context/ModalContext";
 
 const LandingPage = () => {
+  const { register, toggleRegister } = useContext(ModalContext);
+
   return (
     <div>
       <HeroSection />

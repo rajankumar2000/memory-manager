@@ -5,6 +5,8 @@ const initialState = createContext({
   toggleMemory: () => {},
   loginOpen: false,
   toggleLogin: () => {},
+  registerOpen: false,
+  toggleRegister: () => {},
 });
 
 export const ModalContext = createContext(initialState);
