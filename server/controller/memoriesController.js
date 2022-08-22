@@ -4,8 +4,8 @@ import User from "../models/user.js";
 
 export const getPosts = async (req, res) => {
   let userMemories;
-
-  const user = await User.findById("630193e44af25089b5505973");
+  const userId = req.params.id;
+  const user = await User.findById(userId);
 
   try {
     userMemories = await user.populate("memories");
@@ -18,7 +18,6 @@ export const getPosts = async (req, res) => {
       message: "No Memories Found!",
     });
   }
-  console.log(userMemories.memories);
   return res.status(200).json({ memories: userMemories?.memories || null });
 };
 

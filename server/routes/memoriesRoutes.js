@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router
-  .get("/post", getPosts)
+  .get("/post/:id", getPosts)
   .get("/post/:id", getById)
   .post("/post/:id", createPost)
   .put("/post/:id", updatePost)
