@@ -1,14 +1,22 @@
 
 # Memory Manager
-
+####  Table of Contents
+- [Introduction](#introduction)
+-  [Tech Stack](#tech-stack)
+  - [Environment Variables](#environment-variables)
+  - [API Reference](#api-reference)
+      - [Update Memory](#update-memory)
+      - [Delete Memory](#delete-memory)
+      - [Create Memory](#create-memory)
+      - [Get all memories](#get-all-memories)
+      - [Get particular memory](#get-particular-memory)
+  - [Run Locally](#run-locally)
+  - [Screenshots](#screenshots)
+## Introduction
 Memory Manager is webapp which solve problem of storing memories of a person.
-A user can create his/her account on our platform and add his/her memory in the form of small tiny cards.
-
-
-
+A user can create his/her account on our platform and add his/her memory in the form of small tiny cards. User will get all his/her memory at one place.
 
 ## Tech Stack
-
 **Client:** React, Bootstrap, 
 
 **Server:** Node, Express
@@ -28,32 +36,8 @@ To run this project, you will need to add the following environment variables to
 
 
 ## API Reference
-.get("/post/:id", getPosts)
-  .get("/post/:id", getById)
-  .post("/post/:id", createPost)
-  .put("/post/:id", updatePost)
-  .delete("/post/:id", deletePost);
-
-#### Update Memory
-
-```http
-  PUT /api/post/:${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to update |
 
 
-#### Delete Memory
-
-```http
-  Delete /api/post/:${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to delete |
 
 #### Create Memory
 
@@ -83,6 +67,28 @@ To run this project, you will need to add the following environment variables to
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
+
+#### Update Memory
+
+```http
+  PUT /api/post/:${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to update |
+
+
+#### Delete Memory
+
+```http
+  Delete /api/post/:${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to delete |
+
 
 
 
